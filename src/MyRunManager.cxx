@@ -112,11 +112,20 @@ void MyEventAction::BeginOfEventAction(const G4Event*){
 
 void MyEventAction::EndOfEventAction(const G4Event* event){
 
-  double xPrimary = event->GetPrimaryVertex()->GetX0()/cm;
-  double yPrimary = event->GetPrimaryVertex()->GetY0()/cm;
-  double zPrimary = event->GetPrimaryVertex()->GetZ0()/cm;
+// 1. Safely check for the primary vertex
+    double xPrimary = 0, yPrimary = 0, zPrimary = 0;
+    if (event->GetPrimaryVertex()) {
+        xPrimary = event->GetPrimaryVertex()->GetX0()/cm;
+        yPrimary = event->GetPrimaryVertex()->GetY0()/cm;
+        zPrimary = event->GetPrimaryVertex()->GetZ0()/cm;
+    }
 
-  G4VHitsCollection* hc = event->GetHCofThisEvent()->GetHC(0);
+    // 2. Safely check for the Hits Collection
+    G4VHitsCollection* hc = nullptr;
+    G4HCofThisEvent* hce = event->GetHCofThisEvent();
+    if (hce) {
+        hc = hce->GetHC(0);
+    } 
 
   //printf("PRIMARY: %.02f\t %.02f\t %.02f\n",xPrimary,yPrimary,zPrimary);
 /*
@@ -254,7 +263,7 @@ void MySteppingAction::UserSteppingAction(const G4Step* step){
     fVolume = 1;
   } else if (volname == "myLayer1_1"){
     fVolume = 2;
-  } else if(volname.contains("myDetector")) {
+  } else if(G4StrUtil::contains(volname, "myDetector")) {
       size_t last_index = volname.find_last_not_of("0123456789");
       std::string result = volname.substr(last_index + 1); 
       fVolume = atoi(result.c_str())-1 + 13;  

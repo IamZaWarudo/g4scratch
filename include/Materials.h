@@ -3,12 +3,12 @@
 
 class Materials {
   private:
-    static Materials *fMaterials 
-    Materials::Materials();
+    static Materials *fMaterials; 
+    Materials();
 
   public:
-    static Materials::Get(); 
-    Materials::~Materials();
+    static Materials* Get(); 
+    ~Materials();
 
   private:
 

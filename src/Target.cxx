@@ -16,7 +16,7 @@ Target::~Target() { }
 G4VPhysicalVolume *Target::Construct() {
 
   G4Box *target = new G4Box("target",1.*CLHEP::cm,1.*CLHEP::cm,0.1*CLHEP::cm);
-  G4LogicalVolume *targetLogical = new G4LogicalVolume(target,Materials::Get("Ta"),"targetLogical",0,0,0);  
+  G4LogicalVolume *targetLogical = new G4LogicalVolume(target, nullptr ,"targetLogical",0,0,0);  
   //TODO set user limits
 
   G4VPhysicalVolume *targetPhysical = new G4PVPlacement(0,G4ThreeVector(),
