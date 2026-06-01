@@ -1,6 +1,6 @@
 
 
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.16)
 project(g4scratch)
 
 find_package(Geant4 REQUIRED)

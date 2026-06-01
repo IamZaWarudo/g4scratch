@@ -12,7 +12,7 @@ G4VPhysicalVolume *ExperimentConstruction::Construct() {
   ExperimentalHall *expHall = new ExperimentalHall();
   expHall->Construct();
 
-  return expHall->GetPhysical();
+  return expHall->Construct();
 }
 
 void ExperimentConstruction::writeGDML() { }

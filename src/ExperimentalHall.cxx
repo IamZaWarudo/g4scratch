@@ -12,7 +12,9 @@ ExperimentalHall::ExperimentalHall() {
 
 ExperimentalHall::~ExperimentalHall() { }
 
-G4VPhysicalVolume *ExperimentalHall::Construct() { }
+G4VPhysicalVolume *ExperimentalHall::Construct() {
+    return nullptr; 	
+}
 
 void ExperimentalHall::SetXYZ(double x,double y, double z) {
   fExpHallX = x;

@@ -27,7 +27,7 @@ int main(int argc, char **argv) {
   if (argc>1){
     energy = atof(argv[1]);
     std::string e(argv[1]);
-    fName += e;
+    // fName += e;   - i commented this out because it is causing trouble. (AI suggested)
   }
   fName += ".root";
 
